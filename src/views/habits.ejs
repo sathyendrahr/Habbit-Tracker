@@ -1,0 +1,89 @@
+<!-- View for Habits page -->
+
+<div class="container">
+    <% if(user) { %>
+        <h5 style="color: #189AB4">Hi <%= user.name %>!
+        </h5>
+        <% } %>
+
+            <h4 class="mt-4">Habits</h4>
+            <% if(habits.length==0) {%>
+                <p>No habits yet, Create your first habit now!</p>
+
+                <% } else {%>
+
+                    <% habits.forEach((habit)=>{ %>
+
+                        <div class="habit-container my-3">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h5>
+                                    <%= habit.name %>
+                                </h5>
+                                <form action="/tracker?status=Done" method="post">
+                                    <input class="form-control" name="habitId" value="<%= habit._id %>" hidden>
+                                    <button class="btn custom-btn" type="submit">
+                                        Mark as Done
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div class=" d-flex justify-content-around align-items-center mt-3"
+                                style="font-size: 1.2rem;">
+                                <div>
+                                    <i class="fas fa-fire" style="color: #ec6409;"></i>
+                                    <span>
+                                        <%= habit.currentStreak %>
+                                    </span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-trophy" style="color: #FFD43B;"></i>
+                                    <span>
+                                        <%= habit.longestStreak %>
+                                    </span>
+                                </div>
+                                <div>
+                                    <i class="fas fa-check-circle" style="color: #12af32;"></i>
+                                    <span>
+                                        <%= habit.doneCount %>/<%= Math.round((new Date().getTime() - new
+                                                Date(habit.createdOn).getTime()) / (1000 * 3600 * 24)) %>
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <%}) %>
+
+                            <% } %>
+
+                                <button type="button"
+                                    class="btn custom-btn fixed-bottom rounded-pill m-auto mb-3 shadow"
+                                    data-bs-toggle="modal" data-bs-target="#habitModal" data-bs-whatever="@mdo"
+                                    style="width: 150px;">+
+                                    Add
+                                    Habit</button>
+
+                                <div class="modal fade" id="habitModal" tabindex="-1" aria-labelledby="habitModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Enter habit name</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="/habit" method="post">
+                                                    <div class="mb-3 input-group">
+                                                        <input type="text" class="form-control" name="name" id="name"
+                                                            required>
+                                                        <button type="submit" style="--bs-btn-font-size: 1.2rem;"
+                                                            class="btn custom-btn">Add</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+</div>

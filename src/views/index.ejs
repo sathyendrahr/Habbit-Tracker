@@ -1,0 +1,23 @@
+<!-- View for login page -->
+
+<h1 class="text-center my-4">User Login</h1>
+
+<div class="container">
+
+    <% if (errorMessage){ %>
+        <div class="alert alert-danger text-center" role="alert">
+            <%= errorMessage %>
+        </div>
+        <% } %>
+
+            <form action="/login" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <button type="submit" class="btn btn-success mb-3">Login</button>
+            </form>
+
+            <a class="btn btn-link float-end" href="/createUser">Create new user</a>
+
+</div>
