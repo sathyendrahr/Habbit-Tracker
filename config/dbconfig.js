@@ -2,11 +2,16 @@ import mongoose from "mongoose";
 
 const url = process.env.DB_URL || "mongodb://localhost:27017/habittracker";
 
-export const connectToDatabase = () => {
+const clientOptions = {
+  serverApi: { version: "1", strict: true, deprecationErrors: true },
+};
+const connectToDatabase = async () => {
   try {
-    mongoose.connect(url);
+    await mongoose.connect(url, clientOptions);
     console.log("Connected to Database");
   } catch (err) {
     console.log(err);
   }
 };
+
+export default connectToDatabase;
