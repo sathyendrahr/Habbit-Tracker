@@ -5,7 +5,8 @@ const url = process.env.DB_URL || "mongodb://localhost:27017/habittracker";
 const clientOptions = {
   serverApi: { version: "1", strict: true, deprecationErrors: true },
 };
-const connectToDatabase = async () => {
+
+export const connectToDatabase = async () => {
   try {
     await mongoose.connect(url, clientOptions);
     console.log("Connected to Database");
@@ -13,5 +14,3 @@ const connectToDatabase = async () => {
     console.log(err);
   }
 };
-
-export default connectToDatabase;
