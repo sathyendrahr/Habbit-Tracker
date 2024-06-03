@@ -14,4 +14,5 @@ The app is based on MVC pattern and developed using express, ejs & mongoose.
 7. Also mongoDB should be up and running
 8. To install all dependency packages, run **_npm install_**
 9. Start the server: **_node server.js_**
-10. Open a web browser and access the application with application url: _http://localhost:<port>/_
+10. Open a web browser and access the application with application url: _http://localhost:port/_
+11. Demo application can be viewed here: _https://habbit-tracker-c781.onrender.com/_
