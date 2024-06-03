@@ -41,7 +41,7 @@ h4 {
     color: white;
 }
 
-@media screen and (min-width: 620px) {
+@media only screen and (min-width: 620px) {
     .container {
         border: 1px solid grey;
         border-radius: 10px;
