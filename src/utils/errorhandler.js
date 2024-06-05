@@ -8,6 +8,7 @@ export default class ApplicationError extends Error {
 }
 
 export const errorHandler = (err, req, res, next) => {
+  console.log(err);
   logger.error(err.stack);
   if (!err instanceof ApplicationError) {
     err.statusCode = 500;
